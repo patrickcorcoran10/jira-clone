@@ -5,7 +5,8 @@ import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
 // Route Imports
-
+import projectRoutes from './routes/projectRoutes';
+import taskRoutes from './routes/taskRoutes'
 // Configurations
 dotenv.config();
 const app = express();
@@ -22,6 +23,10 @@ app.use(cors())
 app.get('/', (req, res) => {
     res.send('this is a home route')
 })
+// Get All Projects
+app.use('/projects', projectRoutes)
+// Get All Tasks
+app.use('/tasks', taskRoutes)
 
 // Server
 
