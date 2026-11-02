@@ -31,7 +31,7 @@ app.use('/projects', projectRoutes_1.default);
 // Get All Tasks
 app.use('/tasks', taskRoutes_1.default);
 // Server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`server running on port ${port}`);
 });
