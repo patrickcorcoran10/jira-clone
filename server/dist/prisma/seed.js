@@ -64,6 +64,20 @@ function main() {
                 console.error(`Error seeding data for ${modelName}:`, error);
             }
         }
+        yield prisma.$queryRaw `
+    SELECT setval(
+      pg_get_serial_sequence('"Project"', 'id'),
+      COALESCE((SELECT MAX(id) FROM "Project"), 1),
+      EXISTS (SELECT 1 FROM "Project")
+    )
+  `;
+        yield prisma.$queryRaw `
+    SELECT setval(
+      pg_get_serial_sequence('"Task"', 'id'),
+      COALESCE((SELECT MAX(id) FROM "Task"), 1),
+      EXISTS (SELECT 1 FROM "Task")
+    )
+  `;
     });
 }
 main()
